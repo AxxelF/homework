@@ -148,14 +148,50 @@ arr.filter(inArray([3, 5, 7, 8])); // (3) [3, 5, 7]
 /////////////
 /////////////
 
-function createTimer() {
-  return function () {};
+function createPerson(name, age) {
+  let realName = name;
+  let realAge = age;
+
+  return function () {
+    return {
+      getName: function () {
+        return realName;
+      },
+      getAge: function () {
+        return realAge;
+      },
+      setAge: function (newAge) {
+        realAge = newAge;
+      },
+      setName: function (newName) {
+        realName = newName;
+      },
+    };
+  };
 }
 
-function createPerson() {}
+let person = createPerson('Ivan', 23);
 
-// Я не знаю, як написати таймер з замиканням та createPerson,
-// які повинні повертати об'єкти з методами
+person.setAge(30); //      Uncaught TypeError: person.setAge is not a function
+person.setName('John'); // Uncaught TypeError: person.setName is not a function
+person.getName(); //       Uncaught TypeError: person.getName is not a function
+person.getAge(); //        Uncaught TypeError: person.getAge is not a function
+
+/////////////
+/////////////
+/////////////
+
+function createTimer() {
+  let currentTime = Date.now();
+  return {
+    start: function () {
+      return currentTime;
+    },
+    getTime: function () {
+      return currentTime;
+    },
+  };
+}
 
 /////////////
 /////////////
