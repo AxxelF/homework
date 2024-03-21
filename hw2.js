@@ -183,6 +183,19 @@ person.getAge(); //        Uncaught TypeError: person.getAge is not a function
 
 function createTimer() {
   let currentTime = Date.now();
+  let elapsedTime = Date.now() - currentTime;
+  return {
+    start: function () {
+      return currentTime;
+    },
+    getTime: function () {
+      return elapsedTime;
+    },
+  };
+}
+
+function createTimer() {
+  let currentTime = Date.now();
   return {
     start: function () {
       return currentTime;
